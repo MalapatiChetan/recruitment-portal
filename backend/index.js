@@ -7,43 +7,48 @@ import userRoute from "./routes/user.route.js";
 import companyRoute from "./routes/company.route.js";
 import jobRoute from "./routes/job.route.js";
 import applicationRoute from "./routes/application.route.js";
-import path from "path";
+import path from 'path';
 
-dotenv.config();
+dotenv.config({});
 
 const app = express();
 
-const __dirname = path.resolve();
-
-// Middleware
+// middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-
-// CORS setup - allow frontend URL from env or fallback to localhost for dev
 const corsOptions = {
-    origin: process.env.CLIENT_URL || "http://localhost:5173",
-    credentials: true,
+    origin: (origin, callback) => {
+        const allowedOrigins = [
+            'http://localhost:5173', // Local frontend
+            'https://job-portal-dhan.netlify.app' // Deployed frontend
+        ];
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    credentials: true
 };
 
 app.use(cors(corsOptions));
 
-// Routes
+const PORT = process.env.PORT || 3000;
+
+// api's
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/company", companyRoute);
 app.use("/api/v1/job", jobRoute);
 app.use("/api/v1/application", applicationRoute);
 
-// Serve React build static files
-app.use(express.static(path.join(__dirname, "frontend", "dist"))); // Adjust folder if needed
-
-// Catch-all to serve index.html for React Router
-app.get("*", (req, res) => {
+// Serve frontend
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, "/frontend/dist")));
+app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
 });
 
-// Listen and connect DB
-const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     connectDB();
     console.log(`Server running at port ${PORT}`);

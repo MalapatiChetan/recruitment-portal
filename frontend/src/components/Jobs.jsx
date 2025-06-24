@@ -3,12 +3,13 @@ import Navbar from './shared/Navbar'
 import Job from './Job'
 import { useSelector } from 'react-redux'
 import { motion } from 'framer-motion'
+import Footer from './shared/Footer'
 
 const Jobs = () => {
     const { allJobs } = useSelector(store => store.job)
 
     return (
-        <div>
+        <>
             <Navbar />
             <div className='max-w-7xl mx-auto mt-5'>
                 <div className='flex gap-5'>
@@ -34,7 +35,8 @@ const Jobs = () => {
                     </div>
                 </div>
             </div>
-        </div>
+            <Footer />
+        </>
     )
 }
 
