@@ -21,7 +21,7 @@ const corsOptions = {
   origin: (origin, callback) => {
     const allowedOrigins = [
       "http://localhost:5173", // Local frontend
-      "https://job-portal-dhan.netlify.app", // Deployed frontend
+      "https://recruitment-portals.netlify.app", // Deployed frontend
     ];
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
