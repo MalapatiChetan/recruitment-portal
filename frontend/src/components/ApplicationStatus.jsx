@@ -143,38 +143,38 @@ const ApplicationStatus = () => {
                   >
                     <div
                       className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold
-                      ${
-                        isRejectedStep
-                          ? "bg-red-500 text-white"
-                          : isCompleted || isCurrent
-                          ? "bg-green-500 text-white"
-                          : "bg-gray-300 text-gray-700"
-                      }`}
+                        ${
+                          isRejectedStep
+                            ? "bg-red-500 text-white"
+                            : isCompleted || isCurrent
+                            ? "bg-green-500 text-white"
+                            : "bg-gray-300 text-gray-700"
+                        }`}
                     >
                       {index + 1}
                     </div>
                     <div
                       className={`text-sm mt-2 text-center
-                      ${
-                        isRejectedStep
-                          ? "text-red-500 font-semibold"
-                          : isCompleted || isCurrent
-                          ? "text-green-600 font-medium"
-                          : "text-gray-500"
-                      }`}
+                        ${
+                          isRejectedStep
+                            ? "text-red-500 font-semibold"
+                            : isCompleted || isCurrent
+                            ? "text-green-600 font-medium"
+                            : "text-gray-500"
+                        }`}
                     >
                       {step.label}
                     </div>
                     {index < steps.length - 1 && (
                       <div
                         className={`absolute top-5 left-1/2 transform -translate-x-1/2 w-full h-1 z-[-1]
-                        ${
-                          isRejectedStep
-                            ? "bg-red-300"
-                            : isCompleted
-                            ? "bg-green-500"
-                            : "bg-gray-300"
-                        }`}
+                            ${
+                              isRejectedStep
+                                ? "bg-red-300"
+                                : isCompleted
+                                ? "bg-green-500"
+                                : "bg-gray-300"
+                            }`}
                       ></div>
                     )}
                   </div>
@@ -188,13 +188,13 @@ const ApplicationStatus = () => {
                 <span className="font-semibold">Current Status:</span>{" "}
                 <span
                   className={`font-bold uppercase
-                    ${
-                      application.status === "rejected"
-                        ? "text-red-600"
-                        : application.status === "accepted"
-                        ? "text-green-600"
-                        : "text-yellow-600"
-                    }`}
+                        ${
+                          application.status === "rejected"
+                            ? "text-red-600"
+                            : application.status === "accepted"
+                            ? "text-green-600"
+                            : "text-yellow-600"
+                        }`}
                 >
                   {application.status}
                 </span>
